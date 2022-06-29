@@ -1,0 +1,15 @@
+{
+  "name": "rpi-media-organizer",
+  "version": "1.0.0",
+  "description": "script to organize downloaded torrents media",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vicente Ruiz",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^10.1.0",
+    "glob": "^8.0.3"
+  }
+}
