@@ -3,7 +3,7 @@ const fse = require("fs-extra");
 const glob = require("glob");
 const schedule = require("node-schedule");
 
-const TORRENT_FOLDER_PATH = "./torrent/";
+const TORRENT_FOLDER_PATH = "./torrent/completed";
 const MEDIA_FOLDER_PATH = "./media/";
 
 function moveTorrentsToMedia() {
@@ -13,6 +13,7 @@ function moveTorrentsToMedia() {
     fs.existsSync(MEDIA_FOLDER_PATH === true)
   ) {
     const torrentFolders = fs.readdirSync(TORRENT_FOLDER_PATH);
+    console.log(torrentFolders);
 
     return torrentFolders.map((folder) => {
       const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
