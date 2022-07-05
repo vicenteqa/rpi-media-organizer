@@ -2,8 +2,8 @@ FROM node:14.19.0
 
 WORKDIR /rpi-media-organizer
 
-RUN mkdir -p /torrent
-RUN mkdir -p /media
+RUN mkdir -p ./torrent
+RUN mkdir -p ./media
 
 COPY ./ ./
 
