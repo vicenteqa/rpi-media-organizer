@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "fs-extra": "^10.1.0",
-    "glob": "^8.0.3"
+    "glob": "^8.0.3",
+    "node-schedule": "^2.1.0"
   }
 }

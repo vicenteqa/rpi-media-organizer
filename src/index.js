@@ -1,17 +1,20 @@
 const fs = require("fs");
 const fse = require("fs-extra");
 const glob = require("glob");
+const schedule = require("node-schedule");
+
 const TORRENT_FOLDER_PATH = "./torrent/";
 const MEDIA_FOLDER_PATH = "./media/";
 
 function moveTorrentsToMedia() {
+  console.log("Organizing media");
   if (
     fs.existsSync(TORRENT_FOLDER_PATH) === true &&
     fs.existsSync(MEDIA_FOLDER_PATH === true)
   ) {
     const torrentFolders = fs.readdirSync(TORRENT_FOLDER_PATH);
 
-    torrentFolders.map((folder) => {
+    return torrentFolders.map((folder) => {
       const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
       const folderMediaType = getFolderMediaType(videoFilesInFolderAmount);
 
@@ -26,13 +29,15 @@ function moveMovie(folder) {
   const sourceMoviePath = TORRENT_FOLDER_PATH + folder + "/" + movieFile;
   const destinationMoviePath = MEDIA_FOLDER_PATH + "/movies/" + movieFile;
   fs.renameSync(sourceMoviePath, destinationMoviePath);
+  console.log(sourceMoviePath + " => " + destinationMoviePath);
   return fse.rmdirSync(TORRENT_FOLDER_PATH + folder);
 }
 
 function moveTvShow(folder) {
   const sourceTvPath = TORRENT_FOLDER_PATH + folder + "/";
   const destinationTvPath = MEDIA_FOLDER_PATH + "tv/" + folder + "/";
-  return fse.renameSync(sourceTvPath, destinationTvPath);
+  fse.renameSync(sourceTvPath, destinationTvPath);
+  return console.log(sourceTvPath + " => " + destinationTvPath);
 }
 
 function getMovieFile(folder) {
@@ -67,4 +72,4 @@ function isVideoFile(file) {
   );
 }
 
-moveTorrentsToMedia();
+schedule.scheduleJob("*/1 * * * *", () => moveTorrentsToMedia());
