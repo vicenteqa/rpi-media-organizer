@@ -72,5 +72,5 @@ function isVideoFile(file) {
   );
 }
 
-// schedule.scheduleJob("*/1 * * * *", () => moveTorrentsToMedia());
-moveTorrentsToMedia();
+schedule.scheduleJob("*/1 * * * *", () => moveTorrentsToMedia());
+// moveTorrentsToMedia();
