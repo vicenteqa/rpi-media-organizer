@@ -6,4 +6,8 @@ COPY ./ ./
 
 RUN npm install
 
+VOLUME ./torrent
+
+VOLUME ./media
+
 CMD [ "node", "src/index.js" ]
