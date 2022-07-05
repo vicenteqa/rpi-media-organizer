@@ -8,6 +8,7 @@ const MEDIA_FOLDER_PATH = "./media/";
 
 function moveTorrentsToMedia() {
   console.log("Organizing media");
+
   if (
     fs.existsSync(TORRENT_FOLDER_PATH) === true &&
     fs.existsSync(MEDIA_FOLDER_PATH === true)
@@ -73,4 +74,6 @@ function isVideoFile(file) {
   );
 }
 
+fs.mkdirSync(TORRENT_FOLDER_PATH);
+fs.mkdirSync(MEDIA_FOLDER_PATH);
 schedule.scheduleJob("*/1 * * * *", () => moveTorrentsToMedia());
