@@ -4,7 +4,10 @@ WORKDIR /rpi-media-organizer
 
 COPY ./ ./
 
-RUN ls
+RUN mkdir torrent
+
+RUN mkdir media
+
 RUN npm install
 
 EXPOSE 3000

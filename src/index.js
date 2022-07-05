@@ -74,6 +74,4 @@ function isVideoFile(file) {
   );
 }
 
-fs.mkdirSync(TORRENT_FOLDER_PATH);
-fs.mkdirSync(MEDIA_FOLDER_PATH);
 schedule.scheduleJob("*/1 * * * *", () => moveTorrentsToMedia());
