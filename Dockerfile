@@ -5,7 +5,6 @@ WORKDIR /rpi-media-organizer
 COPY ./ ./
 
 RUN ls
-RUN ls torrent
 RUN npm install
 
 EXPOSE 3000

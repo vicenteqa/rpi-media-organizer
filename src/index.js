@@ -14,7 +14,7 @@ function moveTorrentsToMedia() {
     fs.existsSync(MEDIA_FOLDER_PATH === true)
   ) {
     const torrentFolders = fs.readdirSync(TORRENT_FOLDER_PATH);
-    console.log(torrentFolders);
+    console.log("Torrent folder content: " + torrentFolders);
 
     return torrentFolders.map((folder) => {
       const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
