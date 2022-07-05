@@ -1,9 +1,11 @@
 FROM node:14.19.0
 
-WORKDIR /telegram-alerts
+WORKDIR /rpi-media-organizer
 
 COPY ./ ./
 
+RUN ls
+RUN ls torrent
 RUN npm install
 
 EXPOSE 3000
