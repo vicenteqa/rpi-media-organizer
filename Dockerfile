@@ -4,9 +4,9 @@ WORKDIR /rpi-media-organizer
 
 COPY ./ ./
 
-RUN mkdir torrent
+# RUN mkdir torrent
 
-RUN mkdir media
+# RUN mkdir media
 
 RUN npm install
 

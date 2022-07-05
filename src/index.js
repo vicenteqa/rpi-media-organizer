@@ -7,23 +7,21 @@ const TORRENT_FOLDER_PATH = "./torrent/";
 const MEDIA_FOLDER_PATH = "./media/";
 
 function moveTorrentsToMedia() {
+  const currentDir = fs.readdirSync("./");
+  console.log(currentDir);
+
   console.log("Organizing media");
 
-  if (
-    fs.existsSync(TORRENT_FOLDER_PATH) === true &&
-    fs.existsSync(MEDIA_FOLDER_PATH === true)
-  ) {
-    const torrentFolders = fs.readdirSync(TORRENT_FOLDER_PATH);
-    console.log("Torrent folder content: " + torrentFolders);
+  const torrentFolders = fs.readdirSync(TORRENT_FOLDER_PATH);
+  console.log("Torrent folder content: " + torrentFolders);
 
-    return torrentFolders.map((folder) => {
-      const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
-      const folderMediaType = getFolderMediaType(videoFilesInFolderAmount);
+  return torrentFolders.map((folder) => {
+    const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
+    const folderMediaType = getFolderMediaType(videoFilesInFolderAmount);
 
-      if (folderMediaType === "movie") moveMovie(folder);
-      else if (folderMediaType === "tv") moveTvShow(folder);
-    });
-  }
+    if (folderMediaType === "movie") moveMovie(folder);
+    else if (folderMediaType === "tv") moveTvShow(folder);
+  });
 }
 
 function moveMovie(folder) {
