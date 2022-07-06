@@ -1,4 +1,4 @@
-FROM 14.19-alpine3.15
+FROM node:14.19-slim
 
 WORKDIR /rpi-media-organizer
 
