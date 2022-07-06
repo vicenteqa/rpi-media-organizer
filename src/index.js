@@ -13,7 +13,7 @@ function moveTorrentsToMedia() {
 
   console.log(torrentFoldersContent);
 
-  return torrentFolders.map((folder) => {
+  return torrentFoldersContent.map((folder) => {
     if (isVideoFile(folder)) moveMovieInsideTorrentFolder(folder);
     else {
       const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
