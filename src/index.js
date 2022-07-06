@@ -3,31 +3,39 @@ const fse = require("fs-extra");
 const glob = require("glob");
 const schedule = require("node-schedule");
 
-const TORRENT_FOLDER_PATH = "./torrent/";
-const MEDIA_FOLDER_PATH = "./media/";
+const TORRENT_FOLDER_PATH = "../torrent/";
+const MEDIA_FOLDER_PATH = "../media/";
 
 function moveTorrentsToMedia() {
-  const currentDir = fs.readdirSync("./");
-  console.log(currentDir);
-
   console.log("Organizing media");
 
-  const torrentFolders = fs.readdirSync(TORRENT_FOLDER_PATH);
-  console.log("Torrent folder content: " + torrentFolders);
+  const torrentFoldersContent = fs.readdirSync(TORRENT_FOLDER_PATH);
+
+  console.log(torrentFoldersContent);
 
   return torrentFolders.map((folder) => {
-    const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
-    const folderMediaType = getFolderMediaType(videoFilesInFolderAmount);
+    if (isVideoFile(folder)) moveMovieInsideTorrentFolder(folder);
+    else {
+      const videoFilesInFolderAmount = countVideoFilesInFolder(folder);
+      const folderMediaType = getFolderMediaType(videoFilesInFolderAmount);
 
-    if (folderMediaType === "movie") moveMovie(folder);
-    else if (folderMediaType === "tv") moveTvShow(folder);
+      if (folderMediaType === "movie") moveMovieInsideFolder(folder);
+      else if (folderMediaType === "tv") moveTvShow(folder);
+    }
   });
 }
 
-function moveMovie(folder) {
+function moveMovieInsideTorrentFolder(movieFile) {
+  const sourceMoviePath = TORRENT_FOLDER_PATH + movieFile;
+  const destinationMoviePath = MEDIA_FOLDER_PATH + "movies/" + movieFile;
+  fs.renameSync(sourceMoviePath, destinationMoviePath);
+  return console.log(sourceMoviePath + " => " + destinationMoviePath);
+}
+
+function moveMovieInsideFolder(folder) {
   const movieFile = getMovieFile(folder);
   const sourceMoviePath = TORRENT_FOLDER_PATH + folder + "/" + movieFile;
-  const destinationMoviePath = MEDIA_FOLDER_PATH + "/movies/" + movieFile;
+  const destinationMoviePath = MEDIA_FOLDER_PATH + "movies/" + movieFile;
   fs.renameSync(sourceMoviePath, destinationMoviePath);
   console.log(sourceMoviePath + " => " + destinationMoviePath);
   return fse.rmdirSync(TORRENT_FOLDER_PATH + folder);
