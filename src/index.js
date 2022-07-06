@@ -3,8 +3,8 @@ const fse = require("fs-extra");
 const glob = require("glob");
 const schedule = require("node-schedule");
 
-const TORRENT_FOLDER_PATH = "../torrent/";
-const MEDIA_FOLDER_PATH = "../media/";
+const TORRENT_FOLDER_PATH = "../storage/torrent/completed/";
+const MEDIA_FOLDER_PATH = "../storage/media/";
 
 function moveTorrentsToMedia() {
   console.log("Organizing media");
