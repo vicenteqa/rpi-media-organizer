@@ -38,7 +38,7 @@ function moveMovieInsideFolder(folder) {
   const destinationMoviePath = MEDIA_FOLDER_PATH + "movies/" + movieFile;
   fs.renameSync(sourceMoviePath, destinationMoviePath);
   console.log(sourceMoviePath + " => " + destinationMoviePath);
-  return fse.rmdirSync(TORRENT_FOLDER_PATH + folder);
+  return fse.rmdirSync(TORRENT_FOLDER_PATH + folder, { recursive: true });
 }
 
 function moveTvShow(folder) {
